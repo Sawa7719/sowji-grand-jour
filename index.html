@@ -13,46 +13,52 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #5b1622, #8b2635);
+  background: #f7f1e8;
   font-family: Georgia, serif;
-  color: #fff5d7;
   text-align: center;
+  color: #5b1622;
 }
 
 .coffret {
   width: 85%;
   max-width: 400px;
   padding: 35px 20px;
-  border: 2px solid #d4af37;
   border-radius: 20px;
-  background: rgba(0,0,0,0.15);
-  box-shadow: 0 0 25px rgba(212,175,55,0.5);
+  background: white;
+  box-shadow: 0 0 25px rgba(0,0,0,0.15);
 }
 
 h1 {
-  color: #d4af37;
   font-size: 42px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 h2 {
-  font-size: 20px;
   font-weight: normal;
 }
 
-p {
-  font-size: 18px;
+input {
+  width: 80%;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 25px;
+  border: 1px solid #aaa;
+  text-align: center;
+  font-size: 16px;
 }
 
 button {
-  margin-top: 25px;
+  margin-top: 20px;
   padding: 15px 30px;
   border-radius: 30px;
   border: none;
-  background: #d4af37;
-  color: #5b1622;
+  background: #c9a227;
+  color: white;
   font-size: 16px;
-  font-weight: bold;
+}
+
+#message {
+  margin-top: 20px;
 }
 </style>
 
@@ -66,15 +72,44 @@ button {
 
 <h2>Le chemin vers ton grand jour</h2>
 
-<p>
-✨ Un petit trésor t’attend chaque jour ✨
-</p>
+<p>✨ Entre ton mot secret ✨</p>
 
-<button>
-Ouvrir mon coffret
-</button>
+<input id="secret" type="password" placeholder="Mot secret">
+
+<br>
+
+<button onclick="ouvrir()">Ouvrir mon coffret</button>
+
+<p id="message"></p>
 
 </div>
+
+
+<script>
+
+function ouvrir() {
+
+let mot = document.getElementById("secret").value;
+
+// CHANGEZ LE MOT CI-DESSOUS
+let vraiMot = "FOREVER";
+
+
+if (mot === vraiMot) {
+
+document.getElementById("message").innerHTML =
+"✨ Bienvenue Sowji, ton coffret est ouvert ❤️";
+
+} else {
+
+document.getElementById("message").innerHTML =
+"🔒 Ce coffret est réservé à Sowji";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
