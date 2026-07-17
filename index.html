@@ -7,66 +7,73 @@
 <title>Sowji – Le chemin vers ton grand jour</title>
 
 <style>
+
 body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f7f1e8;
-  font-family: Georgia, serif;
-  text-align: center;
-  color: #5b1622;
+margin:0;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f7f1e8;
+font-family:Georgia, serif;
+text-align:center;
+color:#5b1622;
 }
 
 .coffret {
-  width: 85%;
-  max-width: 400px;
-  padding: 35px 20px;
-  border-radius: 20px;
-  background: white;
-  box-shadow: 0 0 25px rgba(0,0,0,0.15);
+width:85%;
+max-width:420px;
+padding:35px 20px;
+border-radius:25px;
+background:white;
+box-shadow:0 0 25px rgba(0,0,0,0.15);
 }
 
 h1 {
-  font-size: 42px;
-  margin-bottom: 5px;
+font-size:45px;
+margin-bottom:5px;
 }
 
 h2 {
-  font-weight: normal;
+font-weight:normal;
 }
 
 input {
-  width: 80%;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 25px;
-  border: 1px solid #aaa;
-  text-align: center;
-  font-size: 16px;
+width:80%;
+padding:15px;
+border-radius:25px;
+border:1px solid #aaa;
+text-align:center;
+font-size:16px;
 }
 
 button {
-  margin-top: 20px;
-  padding: 15px 30px;
-  border-radius: 30px;
-  border: none;
-  background: #c9a227;
-  color: white;
-  font-size: 16px;
+margin-top:20px;
+padding:15px 30px;
+border-radius:30px;
+border:none;
+background:#c9a227;
+color:white;
+font-size:16px;
 }
 
-#message {
-  margin-top: 20px;
+.cache {
+display:none;
 }
+
+.compteur {
+font-size:22px;
+margin:25px 0;
+}
+
 </style>
-
 </head>
 
 <body>
 
 <div class="coffret">
+
+<div id="porte">
 
 <h1>Sowji</h1>
 
@@ -83,6 +90,26 @@ button {
 <p id="message"></p>
 
 </div>
+<div id="interieur" class="cache">
+
+<h1>✨ Bienvenue Sowji ✨</h1>
+
+<h2>Le chemin vers ton grand jour</h2>
+
+<p>Un petit trésor t’attend chaque jour 💍</p>
+
+<div class="compteur" id="compteur">
+Chargement...
+</div>
+
+<button>
+Découvrir mes coffrets ✨
+</button>
+
+</div>
+
+
+</div>
 
 
 <script>
@@ -91,21 +118,59 @@ function ouvrir() {
 
 let mot = document.getElementById("secret").value;
 
-// CHANGEZ LE MOT CI-DESSOUS
+// REMPLACEZ PAR VOTRE MOT SECRET
 let vraiMot = "FOREVER";
 
 
 if (mot === vraiMot) {
 
-document.getElementById("message").innerHTML =
-"✨ Bienvenue Sowji, ton coffret est ouvert ❤️";
+document.getElementById("porte").style.display = "none";
 
-} else {
+document.getElementById("interieur").style.display = "block";
+
+demarrerCompte();
+
+}
+
+else {
 
 document.getElementById("message").innerHTML =
 "🔒 Ce coffret est réservé à Sowji";
 
 }
+
+}
+
+
+function demarrerCompte(){
+
+let dateMariage = new Date("August 21, 2026 00:00:00").getTime();
+
+
+setInterval(function(){
+
+let maintenant = new Date().getTime();
+
+let distance = dateMariage - maintenant;
+
+
+let jours = Math.floor(distance / (1000*60*60*24));
+
+let heures = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+
+let minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+
+let secondes = Math.floor((distance % (1000*60))/1000);
+
+
+document.getElementById("compteur").innerHTML =
+jours + " jours<br>" +
+heures + " heures<br>" +
+minutes + " minutes<br>" +
+secondes + " secondes";
+
+
+},1000);
 
 }
 
