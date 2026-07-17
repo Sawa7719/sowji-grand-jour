@@ -138,21 +138,36 @@ return date.toLocaleDateString("fr-FR", options);
 
 function ouvrirLettre(date){
 
+
 let jour = date.getDate();
+
 let mois = date.getMonth()+1;
 
 
-if(jour === 21 && mois === 7){
+let nomsMois = [
+"",
+"janvier",
+"fevrier",
+"mars",
+"avril",
+"mai",
+"juin",
+"juillet",
+"aout",
+"septembre",
+"octobre",
+"novembre",
+"decembre"
+];
 
-window.location.href = "lettres/21-juillet.html";
 
-}
+let nomFichier =
+jour + "-" + nomsMois[mois] + ".html";
 
-else {
 
-alert("📜 Cette lettre sera bientôt préparée pour Sowji ✨");
+window.location.href =
+"lettres/" + nomFichier;
 
-}
 
 }
 
