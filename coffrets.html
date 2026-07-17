@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,6 +21,7 @@ color:#333;
 
 h1 {
 font-size:38px;
+color:#5b1622;
 }
 
 .sous-titre {
@@ -31,22 +33,27 @@ margin-bottom:30px;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:20px;
+gap:25px;
 }
 
 .coffret {
 width:80%;
 max-width:350px;
-padding:20px;
-border-radius:25px;
+padding:25px;
+border-radius:30px;
 background:white;
 box-shadow:0 5px 20px rgba(0,0,0,0.15);
-font-size:22px;
+font-size:35px;
 }
 
 .date {
 font-size:18px;
-margin-top:10px;
+margin-top:12px;
+}
+
+.message {
+font-size:15px;
+margin-top:8px;
 }
 
 </style>
@@ -58,17 +65,13 @@ margin-top:10px;
 <h1>🌸 Les coffrets de Sowji 🌸</h1>
 
 <p class="sous-titre">
-Un nouveau souvenir chaque jour jusqu’au grand jour 💍
+Un souvenir chaque jour jusqu’au grand jour 💍
 </p>
 
+<div class="jardin" id="jardin">
 
-<div class="jardin">
-
-
-<div class="coffret">
-🌙
-<div class="date">21 juillet 2026</div>
 </div>
+  
 
 
 <div class="coffret">
@@ -92,4 +95,119 @@ Un nouveau souvenir chaque jour jusqu’au grand jour 💍
 </div>
 
 </body>
+</html>
+<script>
+
+let debut = new Date("July 21, 2026");
+let fin = new Date("August 30, 2026");
+
+let aujourdHui = new Date();
+
+let jardin = document.getElementById("jardin");
+
+
+function formatDate(date){
+
+let options = {
+day:"numeric",
+month:"long",
+year:"numeric"
+};
+
+return date.toLocaleDateString("fr-FR", options);
+
+}
+
+
+let dateActuelle = new Date(debut);
+
+
+while(dateActuelle <= fin){
+
+
+let symbole;
+let message;
+
+
+let jour = new Date(
+dateActuelle.getFullYear(),
+dateActuelle.getMonth(),
+dateActuelle.getDate()
+);
+
+
+let maintenant = new Date(
+aujourdHui.getFullYear(),
+aujourdHui.getMonth(),
+aujourdHui.getDate()
+);
+
+
+
+if(jour > maintenant){
+
+symbole = "🌙";
+message = "Ce coffret dort encore...";
+
+}
+
+
+else if(
+jour.getTime() === maintenant.getTime()
+){
+
+symbole = "💎";
+message = "Ton cadeau du jour est prêt ✨";
+
+}
+
+
+else{
+
+symbole = "🪷";
+message = "Souvenir ouvert";
+
+}
+
+
+
+let carte = document.createElement("div");
+
+carte.className = "coffret";
+
+
+carte.innerHTML = `
+
+<div>
+${symbole}
+</div>
+
+<div class="date">
+${formatDate(dateActuelle)}
+</div>
+
+<div class="message">
+${message}
+</div>
+
+`;
+
+
+
+jardin.appendChild(carte);
+
+
+
+dateActuelle.setDate(
+dateActuelle.getDate()+1
+);
+
+
+}
+
+
+</script>
+
+</body>
+
 </html>
